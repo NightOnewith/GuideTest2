@@ -58,41 +58,48 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         iv.setLayoutParams(params);
 
         // 使用文字
-        TextView tv = new TextView(this);
-        tv.setText("欢迎使用");
+        final TextView tv = new TextView(this);
+        tv.setText("开始引导");
         tv.setTextColor(getResources().getColor(R.color.white));
         tv.setTextSize(30);
         tv.setGravity(Gravity.CENTER);
 
         // 使用文字
         final TextView tv2 = new TextView(this);
-        tv2.setText("欢迎使用2");
+        tv2.setText("第一步");
         tv2.setTextColor(getResources().getColor(R.color.white));
         tv2.setTextSize(30);
         tv2.setGravity(Gravity.CENTER);
 
+        // 使用文字
+        final TextView tv3 = new TextView(this);
+        tv3.setText("第二步");
+        tv3.setTextColor(getResources().getColor(R.color.white));
+        tv3.setTextSize(30);
+        tv3.setGravity(Gravity.CENTER);
+
 
         guideView = GuideView.Builder
-                .newInstance(this)
-                .setTargetView(button1)//设置目标
-                .setCustomGuideView(tv)
-                .setDirction(GuideView.Direction.LEFT_BOTTOM)
-                .setShape(GuideView.MyShape.CIRCULAR)   // 设置圆形显示区域，
-                .setBgColor(getResources().getColor(R.color.shadow))
+                .newInstance(this)                                           // 必须调用
+                .setTargetView(button1)//设置目标                             // 必须调用，设置需要Guide的View
+                .setCustomGuideView(tv)                                      // 必须调用，设置GuideView，可以使任意View的实例，比如ImageView 或者TextView
+                .setDirction(GuideView.Direction.LEFT_BOTTOM)                // 设置GuideView 相对于TargetView的位置，有八种，不设置则默认在屏幕左上角,其余的可以显示在右上，右下等等
+                .setShape(GuideView.MyShape.CIRCULAR)   // 设置圆形显示区域，  // 设置显示形状，支持圆形，椭圆，矩形三种样式，矩形可以是圆角矩形
+                .setBgColor(getResources().getColor(R.color.shadow))         // 设置背景颜色，默认透明
                 .setOnclickListener(new GuideView.OnClickCallback() {
                     @Override
                     public void onClickedGuideView() {
                         guideView.hide();
-                        guideView2.show();
+                        guideView2.show();                                   // 必须调用，显示GuideView
                     }
                 })
-                .build();
+                .build();                                                    // 必须调用，Buider模式，返回GuideView实例
 
 
         guideView2 = GuideView.Builder
                 .newInstance(this)
                 .setTargetView(button2)
-                .setCustomGuideView(tv)
+                .setCustomGuideView(tv2)
                 .setDirction(GuideView.Direction.RIGHT_BOTTOM)
                 .setShape(GuideView.MyShape.ELLIPSE)   // 设置椭圆形显示区域，
                 .setBgColor(getResources().getColor(R.color.shadow))
@@ -109,7 +116,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         guideView3 = GuideView.Builder
                 .newInstance(this)
                 .setTargetView(button3)
-                .setCustomGuideView(tv2)
+                .setCustomGuideView(tv3)
                 .setDirction(GuideView.Direction.LEFT_BOTTOM)
                 .setShape(GuideView.MyShape.RECTANGULAR)   // 设置矩形显示区域，
                 .setRadius(80)          // 设置圆形或矩形透明区域半径，默认是targetView的显示矩形的半径，如果是矩形，这里是设置矩形圆角大小

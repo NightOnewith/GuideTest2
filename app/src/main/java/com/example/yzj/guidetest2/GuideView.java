@@ -223,7 +223,7 @@ public class GuideView extends RelativeLayout implements ViewTreeObserver.OnGlob
 
         ((FrameLayout) ((Activity) mContent).getWindow().getDecorView()).addView(this);
 
-        showOnce(); //仅第一次运行显示
+        //showOnce(); //仅第一次运行显示
         first = false;
     }
 
@@ -379,18 +379,18 @@ public class GuideView extends RelativeLayout implements ViewTreeObserver.OnGlob
                     break;
                 case ELLIPSE://椭圆
                     //RectF对象
-                    oval.left = center[0] - 150;                              //左边
-                    oval.top = center[1] - 50;                                //上边
-                    oval.right = center[0] + 150;                             //右边
-                    oval.bottom = center[1] + 50;                             //下边
+                    oval.left = center[0] - 180;                              //左边
+                    oval.top = center[1] - 80;                                //上边
+                    oval.right = center[0] + 180;                             //右边
+                    oval.bottom = center[1] + 80;                             //下边
                     temp.drawOval(oval, mCirclePaint);                        //绘制椭圆
                     break;
                 case RECTANGULAR://圆角矩形
                     //RectF对象
-                    oval.left = center[0] - 150;                              //左边
-                    oval.top = center[1] - 50;                                //上边
-                    oval.right = center[0] + 150;                             //右边
-                    oval.bottom = center[1] + 50;                             //下边
+                    oval.left = center[0] - 180;                              //左边
+                    oval.top = center[1] - 80;                                //上边
+                    oval.right = center[0] + 180;                             //右边
+                    oval.bottom = center[1] + 80;                             //下边
                     temp.drawRoundRect(oval, radius, radius, mCirclePaint);   //绘制圆角矩形
                     break;
             }
