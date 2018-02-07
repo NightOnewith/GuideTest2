@@ -106,9 +106,9 @@ public class GuideView extends RelativeLayout implements ViewTreeObserver.OnGlob
         porterDuffXfermode = null;
         bitmap = null;
         needDraw = true;
-        //        backgroundColor = Color.parseColor("#00000000");
+        //backgroundColor = Color.parseColor("#00000000");
         temp = null;
-        //        direction = null;
+        //direction = null;
 
     }
 
@@ -167,9 +167,9 @@ public class GuideView extends RelativeLayout implements ViewTreeObserver.OnGlob
 
     public void setTargetView(View targetView) {
         this.targetView = targetView;
-        //        restoreState();
+        //restoreState();
         if (!first) {
-            //            guideViewLayout.removeAllViews();
+            //guideViewLayout.removeAllViews();
         }
     }
 
@@ -215,6 +215,8 @@ public class GuideView extends RelativeLayout implements ViewTreeObserver.OnGlob
         if (hasShown())
             return;
 
+        showOnce(); //仅第一次运行显示
+
         if (targetView != null) {
             targetView.getViewTreeObserver().addOnGlobalLayoutListener(this);
         }
@@ -244,7 +246,7 @@ public class GuideView extends RelativeLayout implements ViewTreeObserver.OnGlob
 
         if (customGuideView != null) {
 
-            //            LayoutParams guideViewParams = new LayoutParams(ViewGroup.LayoutParams.MATCH_PARENT, ViewGroup.LayoutParams.WRAP_CONTENT);
+            //LayoutParams guideViewParams = new LayoutParams(ViewGroup.LayoutParams.MATCH_PARENT, ViewGroup.LayoutParams.WRAP_CONTENT);
             if (direction != null) {
                 int width = this.getWidth();
                 int height = this.getHeight();
@@ -378,18 +380,18 @@ public class GuideView extends RelativeLayout implements ViewTreeObserver.OnGlob
                 case ELLIPSE://椭圆
                     //RectF对象
                     oval.left = center[0] - 150;                              //左边
-                    oval.top = center[1] - 50;                                   //上边
+                    oval.top = center[1] - 50;                                //上边
                     oval.right = center[0] + 150;                             //右边
-                    oval.bottom = center[1] + 50;                                //下边
-                    temp.drawOval(oval, mCirclePaint);                   //绘制椭圆
+                    oval.bottom = center[1] + 50;                             //下边
+                    temp.drawOval(oval, mCirclePaint);                        //绘制椭圆
                     break;
                 case RECTANGULAR://圆角矩形
                     //RectF对象
                     oval.left = center[0] - 150;                              //左边
-                    oval.top = center[1] - 50;                                   //上边
+                    oval.top = center[1] - 50;                                //上边
                     oval.right = center[0] + 150;                             //右边
-                    oval.bottom = center[1] + 50;                                //下边
-                    temp.drawRoundRect(oval, radius, radius, mCirclePaint);                   //绘制圆角矩形
+                    oval.bottom = center[1] + 50;                             //下边
+                    temp.drawRoundRect(oval, radius, radius, mCirclePaint);   //绘制圆角矩形
                     break;
             }
         } else {

@@ -11,7 +11,7 @@ import android.widget.RelativeLayout;
 import android.widget.TextView;
 
 public class MainActivity extends AppCompatActivity implements View.OnClickListener{
-    private Button button1,button2,button3;
+    private Button button1,button2,button3,button4;
     private GuideView guideView;
     private GuideView guideView3;
     private GuideView guideView2;
@@ -24,24 +24,32 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         button1 = (Button) findViewById(R.id.button1);
         button2 = (Button) findViewById(R.id.button2);
         button3 = (Button) findViewById(R.id.button3);
+        button4 = (Button) findViewById(R.id.button4);
 
         button1.setOnClickListener(this);
         button2.setOnClickListener(this);
         button3.setOnClickListener(this);
+        button4.setOnClickListener(this);
     }
 
     @Override
     public void onClick(View view) {
-
+        switch (view.getId()){
+            case R.id.button4:
+                showGuideView();
+                break;
+            default:
+                break;
+        }
     }
 
     @Override
     protected void onResume() {
         super.onResume();
-        setGuideView();
+        showGuideView();
     }
 
-    private void setGuideView() {
+    private void showGuideView() {
 
         // 使用图片
         final ImageView iv = new ImageView(this);
@@ -67,7 +75,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         guideView = GuideView.Builder
                 .newInstance(this)
                 .setTargetView(button1)//设置目标
-                .setCustomGuideView(iv)
+                .setCustomGuideView(tv)
                 .setDirction(GuideView.Direction.LEFT_BOTTOM)
                 .setShape(GuideView.MyShape.CIRCULAR)   // 设置圆形显示区域，
                 .setBgColor(getResources().getColor(R.color.shadow))
@@ -85,7 +93,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
                 .newInstance(this)
                 .setTargetView(button2)
                 .setCustomGuideView(tv)
-                .setDirction(GuideView.Direction.LEFT_BOTTOM)
+                .setDirction(GuideView.Direction.RIGHT_BOTTOM)
                 .setShape(GuideView.MyShape.ELLIPSE)   // 设置椭圆形显示区域，
                 .setBgColor(getResources().getColor(R.color.shadow))
                 .setOnclickListener(new GuideView.OnClickCallback() {
@@ -110,7 +118,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
                     @Override
                     public void onClickedGuideView() {
                         guideView3.hide();
-                        guideView.show();
+                        //guideView.show();
                     }
                 })
                 .build();
