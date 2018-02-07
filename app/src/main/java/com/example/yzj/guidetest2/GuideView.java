@@ -215,8 +215,6 @@ public class GuideView extends RelativeLayout implements ViewTreeObserver.OnGlob
         if (hasShown())
             return;
 
-        showOnce(); //仅第一次运行显示
-
         if (targetView != null) {
             targetView.getViewTreeObserver().addOnGlobalLayoutListener(this);
         }
@@ -224,6 +222,8 @@ public class GuideView extends RelativeLayout implements ViewTreeObserver.OnGlob
         this.setBackgroundResource(R.color.transparent);
 
         ((FrameLayout) ((Activity) mContent).getWindow().getDecorView()).addView(this);
+
+        showOnce(); //仅第一次运行显示
         first = false;
     }
 
